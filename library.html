@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lynn Museum & Arts Center - Archive</title>
-    <link rel="stylesheet" href="res/style.css">
+    <title>Lynn Museum & Arts Center - Library</title>
+    <link rel="stylesheet" href="Res/style.css">
     <style>
         :root {
             --primary-color: #0077cc;
@@ -30,11 +30,10 @@
         }
         header {
             background-color: var(--secondary-color);
-            padding: 15px 0;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
         }
         nav ul {
             list-style: none;
@@ -91,32 +90,41 @@
         .settings-menu:hover .settings-dropdown {
             display: block;
         }
-        .logo-container img {
-            max-width: 300px;
-            margin: 40px 0;
+        main {
+            padding: 40px 20px;
         }
-        .search-container {
-            margin-top: 20px;
+        .library-content {
+            margin-top: 40px;
         }
-        #search-box {
-            width: 60%;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
+        /* ---------- New Styles for the Interactive Map ---------- */
+        #map-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 40px auto; /* Center the container */
+            border: 1px solid #ccc;
+            position: relative;
+            overflow: hidden; /* Hide overflow when zooming/panning */
+            background-color: #fff;
         }
-        #search-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        #map-svg {
+            width: 100%;
+            height: auto;
+            cursor: grab; /* Indicate panning is possible */
         }
-        #search-button:hover {
-            background-color: var(--button-hover);
+        #map-svg:active {
+            cursor: grabbing;
+        }
+        /* Tooltip styling */
+        #tooltip {
+            position: absolute;
+            padding: 6px 10px;
+            background-color: #333;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 4px;
+            pointer-events: none; /* Don't block mouse events */
+            display: none;        /* Hidden by default */
+            z-index: 999;
         }
     </style>
 </head>
@@ -143,18 +151,65 @@
     </header>
     
     <main>
-        <div class="logo-container">
-            <img src="res/HQ Transparent-02.png" alt="Lynn Museum & Arts Center Logo">
-        </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search the Archive..." id="search-box">
-            <button id="search-button">Search</button>
-        </div>
+        <!-- New Interactive Map Section -->
+        <section class="map-section">
+            <h2>Interactive Library Map</h2>
+            <div id="map-container">
+                <!-- Inline SVG map with labeled shapes -->
+                <svg id="map-svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet">
+                    <!-- Example "rooms" as simple rectangles -->
+                    <rect x="50"  y="50" width="100" height="100" fill="#ccc"
+                          data-label="Left Room"   class="hover-area" />
+                    <rect x="250" y="50" width="100" height="100" fill="#ccc"
+                          data-label="Center Hall" class="hover-area" />
+                    <rect x="450" y="50" width="100" height="100" fill="#ccc"
+                          data-label="Right Room"  class="hover-area" />
+                </svg>
+
+                <!-- Tooltip (appears on hover) -->
+                <div id="tooltip"></div>
+            </div>
+        </section>
     </main>
     
+    <!-- Panzoom library from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom@4.4.3/dist/panzoom.min.js"></script>
+
     <script>
+        // Dark Mode toggle
         document.getElementById('toggle-dark-mode').addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
+        });
+
+        // 1. Initialize Panzoom on the SVG
+        const svgElement = document.getElementById('map-svg');
+        const panzoom = Panzoom(svgElement, {
+            maxScale: 5,      // Max zoom-in
+            minScale: 0.1,      // Min zoom-out
+            contain: 'outside'
+        });
+        // 2. Enable scroll-wheel zoom
+        svgElement.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
+
+        // 3. Tooltip logic for hover areas
+        const tooltip = document.getElementById('tooltip');
+        const hoverAreas = document.querySelectorAll('.hover-area');
+
+        hoverAreas.forEach(area => {
+            // Show tooltip on mouseenter
+            area.addEventListener('mouseenter', () => {
+                tooltip.textContent = area.dataset.label;
+                tooltip.style.display = 'block';
+            });
+            // Move tooltip with the mouse
+            area.addEventListener('mousemove', (e) => {
+                tooltip.style.top = (e.pageY + 10) + 'px';
+                tooltip.style.left = (e.pageX + 10) + 'px';
+            });
+            // Hide tooltip on mouseleave
+            area.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+            });
         });
     </script>
 </body>
