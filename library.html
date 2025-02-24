@@ -7,12 +7,47 @@
   <link rel="stylesheet" href="res/style.css">
   <!-- Favicon -->
   <link rel="icon" href="res/favicon.ico" type="image/x-icon">
+  <style>
+    /* Styles for the interactive map container */
+    #map-container {
+      width: 80%;
+      max-width: 800px;
+      margin: 40px auto; /* Center the container */
+      border: 1px solid #ccc;
+      position: relative;
+      overflow: hidden;
+      background-color: #fff;
+      padding: 10px;
+    }
+    #svg-wrapper {
+      width: 100%;
+      height: auto;
+      cursor: grab;
+    }
+    #svg-wrapper svg {
+      width: 100%;
+      height: auto;
+    }
+    #svg-wrapper:active {
+      cursor: grabbing;
+    }
+    #tooltip {
+      position: absolute;
+      padding: 6px 10px;
+      background-color: #333;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 4px;
+      pointer-events: none;
+      display: none;
+      z-index: 999;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header will be loaded from an external file -->
+  <!-- Load header from external header.html -->
   <div id="header-container"></div>
   <script>
-    // Load the common header from header.html
     fetch('header.html')
       .then(response => response.text())
       .then(data => {
@@ -24,7 +59,7 @@
       })
       .catch(err => console.error('Error loading header:', err));
   </script>
-
+  
   <main>
     <section class="map-section">
       <h2>Interactive Library Map</h2>
@@ -36,11 +71,11 @@
       </div>
     </section>
   </main>
-
+  
   <!-- Panzoom library from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom@4.4.3/dist/panzoom.min.js"></script>
   <script>
-    // Load the external SVG file for the library floor plan
+    // Load the external SVG floor plan
     fetch('res/library_floorplan.svg')
       .then(response => response.text())
       .then(svgData => {

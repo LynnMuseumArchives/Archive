@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to: Historical Research - Lynn Museum & Arts Center</title>
+  <link rel="stylesheet" href="res/style.css">
+  <!-- Favicon -->
+  <link rel="icon" href="res/favicon.ico" type="image/x-icon">
+  <style>
+    /* Additional styling for the Research page */
+    .research-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .research-container h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5em;
+    }
+    .resource-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .resource-table th,
+    .resource-table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .resource-table th {
+      font-size: 1.1em;
+      color: var(--primary-color);
+      cursor: pointer;
+    }
+    .resource-table a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    .resource-table a:hover {
+      text-decoration: underline;
+    }
+    .external-indicator {
+      font-size: 0.8em;
+      margin-left: 0.2em;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+  </style>
+  <!-- Include sorttable library -->
+  <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+</head>
+<body>
+  <!-- Header loaded from external header.html -->
+  <div id="header-container"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-container').innerHTML = data;
+        document.getElementById('toggle-dark-mode').addEventListener('click', function(){
+          document.body.classList.toggle('dark-mode');
+        });
+      })
+      .catch(err => console.error('Error loading header:', err));
+  </script>
+  <main>
+    <div class="research-container">
+      <h1>How to: Historical Research</h1>
+      <table class="resource-table sortable">
+        <thead>
+          <tr>
+            <th>Resource</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="white-space: nowrap;">
+              <a href="https://maps.mhc-macris.net/" target="_blank">
+                MACRIS <span class="external-indicator" aria-label="external link">🗗</span>
+              </a>
+            </td>
+            <td>
+              Access detailed historic property records, building inventories, and architectural data to explore Essex County’s heritage.
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap;">
+              <a href="https://www.atlascope.org/" target="_blank">
+                Atlascope <span class="external-indicator" aria-label="external link">🗗</span>
+              </a>
+            </td>
+            <td>
+              View digital historical maps and geographic data to visualize past urban layouts and property boundaries in Essex County.
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap;">
+              <a href="https://salemdeeds.com/salemdeeds/Default2.aspx" target="_blank">
+                SalemDeeds <span class="external-indicator" aria-label="external link">🗗</span>
+              </a>
+            </td>
+            <td>
+              Retrieve public property deed records and transaction documents—essential for tracing land ownership and development.
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap;">
+              <a href="https://www.familysearch.org/" target="_blank">
+                FamilySearch <span class="external-indicator" aria-label="external link">🗗</span>
+              </a>
+            </td>
+            <td>
+              Discover vast genealogical records including census data, vital records, and family trees to uncover personal histories.
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap;">
+              <a href="https://www.digitalcommonwealth.org/" target="_blank">
+                Digital Commonwealth <span class="external-indicator" aria-label="external link">🗗</span>
+              </a>
+            </td>
+            <td>
+              Explore digitized art, documents, and historical photographs that capture Essex County’s visual heritage.
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap;">
+              <a href="https://digitalheritage.noblenet.org/s/lynn/page/welcome" target="_blank">
+                Lynn Public Library <span class="external-indicator" aria-label="external link">🗗</span>
+              </a>
+            </td>
+            <td>
+              Access a rich digital heritage collection, including newspapers, local archives, and community records.
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap;">
+              <a href="https://www.familysearch.org/en/search/catalog/412735" target="_blank">
+                FamilySearch Probate Inventories <span class="external-indicator" aria-label="external link">🗗</span>
+              </a>
+            </td>
+            <td>
+              Examine Massachusetts Probate Inventories (1638–1916) to trace estate settlements—offering insights into family histories, property ownership, and social structures.
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap;">
+              <a href="https://www.mass.gov/info-details/find-out-how-to-access-historic-civil-and-criminal-case-records#civil-and-criminal-case-records-before-1860-" target="_blank">
+                Historic Court Records <span class="external-indicator" aria-label="external link">🗗</span>
+              </a>
+            </td>
+            <td>
+              Learn how to access historic civil and criminal case records by county in Massachusetts—vital for legal and social research.
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap;">
+              <a href="https://archive.org/" target="_blank">
+                Archive.org <span class="external-indicator" aria-label="external link">🗗</span>
+              </a>
+            </td>
+            <td>
+              Browse millions of digitized texts, audio recordings, and videos to uncover historical narratives and primary research materials.
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap;">
+              <a href="https://www.loc.gov/" target="_blank">
+                Library of Congress <span class="external-indicator" aria-label="external link">🗗</span>
+              </a>
+            </td>
+            <td>
+              Access a vast collection of manuscripts, photographs, and historical documents that offer a broader context to regional and national history.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>
