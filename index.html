@@ -1,161 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lynn Museum & Arts Center - Archive</title>
-    <link rel="stylesheet" href="res/style.css">
-    <style>
-        :root {
-            --primary-color: #0077cc;
-            --secondary-color: #005599;
-            --background-color: #84c5ff;
-            --text-color: #000;
-            --button-hover: #004477;
-        }
-        body.dark-mode {
-            --background-color: #1e1e1e;
-            --text-color: white;
-            --primary-color: #00aaff;
-            --secondary-color: #0088cc;
-            --button-hover: #0077cc;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: var(--secondary-color);
-            padding: 15px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-        nav ul li {
-            display: inline;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-        nav ul li a:hover {
-            color: var(--primary-color);
-        }
-        .settings-menu {
-            position: relative;
-            display: inline-block;
-        }
-        .settings-menu button {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .settings-dropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: var(--secondary-color);
-            min-width: 150px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-        .settings-dropdown a, .settings-dropdown button {
-            display: block;
-            color: white;
-            padding: 10px;
-            text-align: left;
-            width: 100%;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        .settings-dropdown a:hover, .settings-dropdown button:hover {
-            background-color: var(--button-hover);
-        }
-        .settings-menu:hover .settings-dropdown {
-            display: block;
-        }
-        .logo-container img {
-            max-width: 300px;
-            margin: 40px 0;
-        }
-        .search-container {
-            margin-top: 20px;
-        }
-        #search-box {
-            width: 60%;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-        }
-        #search-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        #search-button:hover {
-            background-color: var(--button-hover);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lynn Museum & Arts Center - Archive</title>
+  <link rel="stylesheet" href="res/style.css">
+  <!-- Favicon -->
+  <link rel="icon" href="res/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="library.html">Library</a></li>
-                <li><a href="#">Basement</a></li>
-                <li><a href="reference.html">Reference Guide</a></li>
-                <li><a href="#">How to: Historical Research</a></li>
-                <li><a href="https://trello.com/b/1YoJWfHl/archive-work" target="_blank">Trello</a></li>
-                <li><a href="https://lynnmuseum.org/" target="_blank">Lynn Museum</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </nav>
-        <div class="settings-menu">
-            <button>Settings ▼</button>
-            <div class="settings-dropdown">
-                <button id="toggle-dark-mode">Toggle Dark Mode</button>
-            </div>
-        </div>
-    </header>
-    
-    <main>
-        <div class="logo-container">
-            <img src="res/HQ Transparent-02.png" alt="Lynn Museum & Arts Center Logo">
-        </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search the Archive..." id="search-box">
-            <button id="search-button">Search</button>
-        </div>
-    </main>
-    
-    <script>
-        document.getElementById('toggle-dark-mode').addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-        });
-    </script>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="#">Basement</a></li>
+        <li><a href="reference.html">Reference Guide</a></li>
+        <li><a href="#">How to: Historical Research</a></li>
+        <li><a href="https://trello.com/b/1YoJWfHl/archive-work" target="_blank">Trello</a></li>
+        <li><a href="https://lynnmuseum.org/" target="_blank">Lynn Museum</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="settings-menu">
+      <button>Settings ▼</button>
+      <div class="settings-dropdown">
+        <button id="toggle-dark-mode">Toggle Dark Mode</button>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <div class="logo-container">
+      <img src="res/HQ Transparent-02.png" alt="Lynn Museum & Arts Center Logo">
+    </div>
+    <div class="search-container">
+      <input type="text" placeholder="Search the Archive..." id="search-box">
+      <button id="search-button">Search</button>
+    </div>
+  </main>
+  
+  <script>
+    // Toggle dark mode
+    document.getElementById('toggle-dark-mode').addEventListener('click', function() {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
 </body>
 </html>
