@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lynn Museum & Arts Center - Basement</title>
+  <link rel="stylesheet" href="res/style.css">
+  <!-- Favicon -->
+  <link rel="icon" href="res/favicon.ico" type="image/x-icon">
+  <style>
+    /* Styles for the interactive map container */
+    #map-container {
+      width: 80%;
+      max-width: 800px;
+      margin: 40px auto; /* Center the container */
+      border: 1px solid #ccc;
+      position: relative;
+      overflow: hidden;
+      background-color: #fff;
+      padding: 10px;
+    }
+    #svg-wrapper {
+      width: 100%;
+      height: auto;
+      cursor: grab;
+    }
+    #svg-wrapper svg {
+      width: 100%;
+      height: auto;
+    }
+    #svg-wrapper:active {
+      cursor: grabbing;
+    }
+    #tooltip {
+      position: absolute;
+      padding: 6px 10px;
+      background-color: #333;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 4px;
+      pointer-events: none;
+      display: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <!-- Load header from external header.html -->
+  <div id="header-container"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-container').innerHTML = data;
+        // Attach dark mode toggle event after header loads
+        document.getElementById('toggle-dark-mode').addEventListener('click', function(){
+          document.body.classList.toggle('dark-mode');
+        });
+      })
+      .catch(err => console.error('Error loading header:', err));
+  </script>
+  
+  <main>
+    <section class="map-section">
+      <h2>Interactive Basement Map</h2>
+      <div id="map-container">
+        <!-- SVG will be loaded into this wrapper -->
+        <div id="svg-wrapper"></div>
+        <!-- Tooltip (appears on hover) -->
+        <div id="tooltip"></div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Panzoom library from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom@4.4.3/dist/panzoom.min.js"></script>
+  <script>
+    // Load the external SVG floor plan
+    fetch('res/basement_floorplan.svg')
+      .then(response => response.text())
+      .then(svgData => {
+        const svgWrapper = document.getElementById('svg-wrapper');
+        svgWrapper.innerHTML = svgData;
+        const svgElement = svgWrapper.querySelector('svg');
+        svgElement.id = 'map-svg';
+        const panzoomInstance = Panzoom(svgElement, {
+          maxScale: 5,
+          minScale: 0.1,
+          contain: 'outside'
+        });
+        svgElement.parentElement.addEventListener('wheel', panzoomInstance.zoomWithWheel);
+        const tooltip = document.getElementById('tooltip');
+        const hoverAreas = svgElement.querySelectorAll('.hover-area');
+        hoverAreas.forEach(area => {
+          area.addEventListener('mouseenter', () => {
+            tooltip.textContent = area.dataset.label;
+            tooltip.style.display = 'block';
+          });
+          area.addEventListener('mousemove', (e) => {
+            tooltip.style.top = (e.pageY + 10) + 'px';
+            tooltip.style.left = (e.pageX + 10) + 'px';
+          });
+          area.addEventListener('mouseleave', () => {
+            tooltip.style.display = 'none';
+          });
+        });
+      })
+      .catch(err => {
+        console.error('Error loading the SVG file:', err);
+      });
+  </script>
+</body>
+</html>
